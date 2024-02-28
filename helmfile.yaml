@@ -38,3 +38,11 @@ releases:
       - cert-manager-crds
     values:
       - ./cert-manager.values.yaml.gotmpl
+
+  - name: cert-manager-csi-driver
+    namespace: cert-manager
+    chart: jetstack/cert-manager-csi-driver
+    needs:
+      - cert-manager
+    values:
+      - ./cert-manager-csi-driver.yaml.gotmpl

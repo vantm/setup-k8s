@@ -32,3 +32,8 @@ cert-manager:
       limits:
         cpu: 200m
         memory: 250Mi
+cert-manager-csi-driver:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 250Mi
