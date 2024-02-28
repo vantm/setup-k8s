@@ -1,0 +1,4 @@
+{{- with .Values.reflector -}}
+resources:
+  {{- toYaml .resources | nindent 2 }}
+{{- end -}}

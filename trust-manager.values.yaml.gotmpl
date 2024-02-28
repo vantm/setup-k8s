@@ -1,0 +1,4 @@
+{{- with index .Values "trust-manager" -}}
+resources:
+  {{- toYaml .resources | nindent 2 }}
+{{- end -}}

@@ -9,6 +9,8 @@ repositories:
     url: https://kubernetes-sigs.github.io/metrics-server/
   - name: jetstack
     url: https://charts.jetstack.io
+  - name: emberstack
+    url: https://emberstack.github.io/helm-charts
 
 releases:
   - name: metrics-server
@@ -42,7 +44,24 @@ releases:
   - name: cert-manager-csi-driver
     namespace: cert-manager
     chart: jetstack/cert-manager-csi-driver
+    version: 0.7.1
     needs:
       - cert-manager
     values:
       - ./cert-manager-csi-driver.yaml.gotmpl
+
+  - name: trust-manager
+    namespace: cert-manager
+    chart: jetstack/trust-manager
+    version: 0.8.0
+    needs:
+      - cert-manager
+    values:
+      - ./trust-manager.values.yaml.gotmpl
+
+  - name: reflector
+    namespace: emberstack
+    chart: emberstack/reflector
+    version: 7.1.256
+    values:
+      - ./reflector.values.yaml.gotmpl
