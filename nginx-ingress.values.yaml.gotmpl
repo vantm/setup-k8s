@@ -1,0 +1,14 @@
+{{- with index .Values "nginx-ingress" }}
+{{- with .controller -}}
+controller:
+  {{- if .nginxDebug }}
+  nginxDebug: true
+  {{- end }}
+  resources:
+  {{- toYaml .resources | nindent 4 }}
+{{- end -}}
+
+prometheus:
+  create: false
+
+{{- end -}}

@@ -1,0 +1,19 @@
+{{- with index .Values "cert-manager" -}}
+resources:
+  {{- toYaml .resources | nindent 2 }}
+
+webhook:
+  resources:
+    {{- toYaml .resources | nindent 4 }}
+
+cainjector:
+  resources:
+    {{- toYaml .resources | nindent 4 }}
+
+startupapicheck:
+  resources:
+    {{- toYaml .resources | nindent 4 }}
+
+prometheus:
+  enabled: false
+{{- end -}}

@@ -1,0 +1,8 @@
+{{- with index .Values "metrics-server" -}}
+args:
+  {{- range $v := .args }}
+  - {{ quote $v }}
+  {{- end }}
+resources:
+  {{- toYaml .resources | nindent 2 }}
+{{- end -}}

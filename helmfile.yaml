@@ -1,0 +1,40 @@
+environments:
+  kind:
+    kubeContext: kind-kind-cluster
+    values:
+      - kind.values.yaml
+---
+repositories:
+  - name: metrics-server
+    url: https://kubernetes-sigs.github.io/metrics-server/
+  - name: jetstack
+    url: https://charts.jetstack.io
+
+releases:
+  - name: metrics-server
+    namespace: metrics-server
+    chart: metrics-server/metrics-server
+    version: 3.12.0
+    values:
+      - ./metrics-server.values.yaml.gotmpl
+
+  - name: nginx-ingress
+    namespace: nginx
+    chart: oci://ghcr.io/nginxinc/charts/nginx-ingress
+    version: 1.1.3
+    values:
+      - ./nginx-ingress.values.yaml.gotmpl
+
+  - name: cert-manager-crds
+    namespace: cert-manager
+    chart: ./cert-manager-crds
+    version: 1.14.3
+
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: 1.14.3
+    needs:
+      - cert-manager-crds
+    values:
+      - ./cert-manager.values.yaml.gotmpl
