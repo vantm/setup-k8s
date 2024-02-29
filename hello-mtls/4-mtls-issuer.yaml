@@ -1,0 +1,40 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mtls-ca-cert
+  namespace: mtls-system
+spec:
+  isCA: true
+  commonName: mTLS Issuer
+  secretName: mtls-ca
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: selfsigned-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: mtls-issuer
+  namespace: mtls-system
+spec:
+  ca:
+    secretName: mtls-ca
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mtls-ca-mirror
+  namespace: cert-manager
+  annotations:
+    reflector.v1.k8s.emberstack.com/reflects: "mtls-system/mtls-ca"
+  labels:
+    trust: enabled
+type: Opaque
+data: {}

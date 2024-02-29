@@ -1,19 +1,19 @@
 apiVersion: trust.cert-manager.io/v1alpha1
 kind: Bundle
 metadata:
-  name: mtls-trust-bundle
+  name: ca-bundle
   namespace: cert-manager
 spec:
   sources:
     - useDefaultCAs: true
     - secret:
+        key: ca.crt
         selector:
           matchLabels:
             trust: enabled
-        key: tls.crt
   target:
     configMap:
-      key: ca-certificates.pem
+      key: ca-certificates.crt
     namespaceSelector:
       matchLabels:
         trust: enabled

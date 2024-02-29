@@ -5,6 +5,8 @@ metadata:
   namespace: mtls-system
   labels:
     app: hello-app
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels:
@@ -19,6 +21,8 @@ spec:
         - name: hello-app
           image: us-docker.pkg.dev/google-samples/containers/gke/hello-app-tls:1.0
           imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 1000 # root
           ports:
             - containerPort: 8443
           volumeMounts:
@@ -41,11 +45,11 @@ spec:
             readOnly: true
             volumeAttributes:
               csi.cert-manager.io/issuer-name: mtls-issuer
-              csi.cert-manager.io/dns-names: \
-                ${POD_NAME},\
-                ${POD_NAME}.${POD_NAMESPACE},\
-                ${POD_NAME}.${POD_NAMESPACE}.svc,\
-                ${POD_NAME}.${POD_NAMESPACE}.svc.cluster.local
+              csi.cert-manager.io/dns-names: >-
+                hello-app,
+                hello-app.mtls-system,
+                hello-app.mtls-system.svc,
+                hello-app.mtls-system.svc.cluster.local
 ---
 apiVersion: v1
 kind: Service
