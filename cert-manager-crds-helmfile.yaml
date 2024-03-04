@@ -1,0 +1,9 @@
+environments:
+  kind:
+    kubeContext: kind-kind-cluster
+---
+releases:
+  - name: cert-manager-crds
+    namespace: cert-manager
+    chart: ./cert-manager-crds
+    version: 1.14.3

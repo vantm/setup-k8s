@@ -1,0 +1,12 @@
+redis-cluster:
+  password: P@ssw0rd
+  nodes: 3
+  size: 100Mi
+  debug: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 50Mi
+    limits:
+      cpu: 100m
+      memory: 100Mi

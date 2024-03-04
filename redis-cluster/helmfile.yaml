@@ -1,0 +1,16 @@
+environments:
+  kind:
+    kubeContext: kind-kind-cluster
+    values:
+      - values.kind.yaml
+---
+releases:
+  - name: redis-cluster
+    namespace: redis
+    chart: oci://registry-1.docker.io/bitnamicharts/redis-cluster
+    version: 9.7.0
+    set:
+      - name: password
+        value: '{{ env "REDIS_PASSWORD" }}'
+    values:
+      - redis-cluster.values.yaml.gotmpl

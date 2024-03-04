@@ -1,17 +1,3 @@
-metrics-server:
-  args:
-    - --kubelet-insecure-tls
-  resources:
-    limits:
-      cpu: 200m
-      memory: 250Mi
-nginx-ingress:
-  controller:
-    nginxDebug: true
-    resources:
-      limits:
-        cpu: 200m
-        memory: 250Mi
 cert-manager:
   resources:
     limits:
@@ -42,8 +28,3 @@ trust-manager:
     limits:
       cpu: 200m
       memory: 250Mi
-reflector:
-  resources:
-    limits:
-      cpu: 200m
-      memory: 300Mi

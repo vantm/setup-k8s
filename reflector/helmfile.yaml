@@ -1,0 +1,17 @@
+environments:
+  kind:
+    kubeContext: kind-kind-cluster
+    values:
+      - values.kind.yaml
+---
+repositories:
+  - name: emberstack
+    url: https://emberstack.github.io/helm-charts
+
+releases:
+  - name: reflector
+    namespace: emberstack
+    chart: emberstack/reflector
+    version: 7.1.256
+    values:
+      - reflector.values.yaml.gotmpl

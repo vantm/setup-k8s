@@ -1,0 +1,25 @@
+{{- with index .Values "redis-cluster" -}}
+{{- if hasKey . "password" -}}
+{{- if .password -}}
+password: {{ .password }}
+{{- else -}}
+usePassword: false
+{{- end }}
+{{- end }}
+{{- if .debug }}
+image:
+  debug: true
+{{- end }}
+redis:
+  resources:
+    {{- toYaml .resources | nindent 6 }}
+cluster:
+  {{- if hasKey . "nodes" }}
+  nodes: {{ .nodes }}
+  {{- end }}
+  addNodes: true
+persistence:
+{{- if .size }}
+  size: {{ .size }}
+{{- end }}
+{{- end -}}

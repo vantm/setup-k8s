@@ -1,0 +1,5 @@
+reloader:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 200Mi

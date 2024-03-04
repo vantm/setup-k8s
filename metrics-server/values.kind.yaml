@@ -1,0 +1,7 @@
+metrics-server:
+  args:
+    - --kubelet-insecure-tls
+  resources:
+    limits:
+      cpu: 200m
+      memory: 250Mi

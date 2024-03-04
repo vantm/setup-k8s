@@ -1,0 +1,7 @@
+nginx-ingress:
+  controller:
+    nginxDebug: true
+    resources:
+      limits:
+        cpu: 200m
+        memory: 250Mi
