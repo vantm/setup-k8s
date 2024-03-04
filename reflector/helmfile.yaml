@@ -14,4 +14,4 @@ releases:
     chart: emberstack/reflector
     version: 7.1.256
     values:
-      - reflector.values.yaml.gotmpl
+      - reflector.values.gotmpl

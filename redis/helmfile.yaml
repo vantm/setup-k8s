@@ -5,12 +5,12 @@ environments:
       - values.kind.yaml
 ---
 releases:
-  - name: redis-cluster
+  - name: redis
     namespace: redis
-    chart: oci://registry-1.docker.io/bitnamicharts/redis-cluster
-    version: 9.7.0
+    chart: oci://registry-1.docker.io/bitnamicharts/redis
+    version: 18.17.1
     set:
-      - name: password
+      - name: auth.password
         value: '{{ env "REDIS_PASSWORD" }}'
     values:
-      - redis-cluster.values.gotmpl
+      - redis.values.gotmpl

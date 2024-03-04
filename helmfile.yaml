@@ -3,10 +3,13 @@ environments:
     kubeContext: kind-kind-cluster
 ---
 helmfiles:
-  - cert-manager-crds-helmfile.yaml
+  - crds-helmfile.yaml
   - metrics-server/helmfile.yaml
   - nginx-ingress/helmfile.yaml
   - cert-manager/helmfile.yaml
   - reloader/helmfile.yaml
   - reflector/helmfile.yaml
-  - redis-cluster/helmfile.yaml
+  # disable redis-cluster due to an unresolved error causes the cluster nodes
+  # can be readied.
+  #- redis-cluster/helmfile.yaml
+  - redis/helmfile.yaml

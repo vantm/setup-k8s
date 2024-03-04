@@ -1,0 +1,28 @@
+redis:
+  auth:
+    enabled: true
+    password: P@ssw0rd
+  image:
+    debug: true
+  master:
+    count: 1
+    resources:
+      requests:
+        cpu: 50m
+        memory: 50Mi
+      limits:
+        cpu: 100m
+        memory: 100Mi
+    persistence:
+      size: 100Mi
+  replica:
+    replicaCount: 2
+    resources:
+      requests:
+        cpu: 50m
+        memory: 50Mi
+      limits:
+        cpu: 100m
+        memory: 100Mi
+    persistence:
+      size: 100Mi

@@ -14,4 +14,4 @@ releases:
     chart: stakater/reloader
     version: 1.0.69
     values:
-      - reloader.values.yaml.gotmpl
+      - reloader.values.gotmpl

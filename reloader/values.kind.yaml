@@ -1,5 +1,7 @@
 reloader:
-  resources:
-    limits:
-      cpu: 200m
-      memory: 200Mi
+  syncAfterRestart: true
+  deployment:
+    resources:
+      limits:
+        cpu: 200m
+        memory: 200Mi

@@ -1,7 +1,0 @@
-{{- with .Values.reloader -}}
-reloader:
-  syncAfterRestart: true
-  deployment:
-    resources:
-      {{- toYaml .resources | nindent 6 }}
-{{- end -}}
